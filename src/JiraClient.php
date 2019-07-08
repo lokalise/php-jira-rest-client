@@ -227,7 +227,7 @@ class JiraClient
         $headers = ['Accept: */*', 'Content-Type: application/json', 'X-Atlassian-Token: no-check'];
         if ($this->getConfiguration()->isBasicAuthEnabled()) {
             $token = base64_encode($this->getConfiguration()->getJiraUser() . ':' . $this->getConfiguration()->getBasicAuthToken());
-            $headers[] = "Authorization: Basic: $token";
+            $headers[] = "Authorization: Basic $token";
         }
         curl_setopt($ch, CURLOPT_ENCODING, '');
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
