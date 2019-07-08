@@ -226,7 +226,7 @@ class JiraClient
 
         $headers = ['Accept: */*', 'Content-Type: application/json', 'X-Atlassian-Token: no-check'];
         if ($this->getConfiguration()->isBasicAuthEnabled()) {
-            $headers[] = "Basic: {$this->getConfiguration()->getBasicAuthToken()}";
+            $headers[] = "Authorization: Basic: {$this->getConfiguration()->getBasicAuthToken()}";
         }
         curl_setopt($ch, CURLOPT_ENCODING, '');
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
@@ -424,6 +424,11 @@ class JiraClient
      */
     protected function authorization($ch, $cookieFile = null)
     {
+        // do not add authorization if basic auth is used
+        if ($this->getConfiguration()->isBasicAuthEnabled()) {
+            return;
+        }
+
         // use cookie
         if ($this->getConfiguration()->isCookieAuthorizationEnabled()) {
             if ($cookieFile === null) {
