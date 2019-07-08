@@ -18,6 +18,8 @@ class ArrayConfiguration extends AbstractConfiguration
      */
     public function __construct(array $configuration)
     {
+        $this->basicAuthEnabled = false;
+        $this->basicAuthToken = null;
         $this->jiraLogEnabled = true;
         $this->jiraLogFile = 'jira-rest-client.log';
         $this->jiraLogLevel = 'WARNING';

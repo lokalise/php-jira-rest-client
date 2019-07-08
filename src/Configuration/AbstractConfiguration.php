@@ -134,6 +134,16 @@ abstract class AbstractConfiguration implements ConfigurationInterface
     protected $useV3RestApi;
 
     /**
+     * @var string|null
+     */
+    protected $basicAuthToken;
+
+    /**
+     * @var bool
+     */
+    protected $basicAuthEnabled;
+
+    /**
      * @return string
      */
     public function getJiraHost()
@@ -289,5 +299,21 @@ abstract class AbstractConfiguration implements ConfigurationInterface
     public function getUseV3RestApi()
     {
         return $this->useV3RestApi;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getBasicAuthToken()
+    {
+        return $this->basicAuthToken;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isBasicAuthEnabled()
+    {
+        return $this->basicAuthEnabled;
     }
 }

@@ -224,9 +224,12 @@ class JiraClient
             curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
         }
 
+        $headers = ['Accept: */*', 'Content-Type: application/json', 'X-Atlassian-Token: no-check'];
+        if ($this->getConfiguration()->isBasicAuthEnabled()) {
+            $headers[] = "Basic: {$this->getConfiguration()->getBasicAuthToken()}";
+        }
         curl_setopt($ch, CURLOPT_ENCODING, '');
-        curl_setopt($ch, CURLOPT_HTTPHEADER,
-            ['Accept: */*', 'Content-Type: application/json', 'X-Atlassian-Token: no-check']);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
         curl_setopt($ch, CURLOPT_VERBOSE, $this->getConfiguration()->isCurlOptVerbose());
 

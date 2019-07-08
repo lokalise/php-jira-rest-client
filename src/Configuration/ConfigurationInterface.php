@@ -138,4 +138,14 @@ interface ConfigurationInterface
      * @return bool
      */
     public function getUseV3RestApi();
+
+    /**
+     * @return string|null
+     */
+    public function getBasicAuthToken();
+
+    /**
+     * @return bool
+     */
+    public function isBasicAuthEnabled();
 }
